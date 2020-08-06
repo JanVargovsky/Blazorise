@@ -106,6 +106,15 @@ namespace Blazorise.DataGrid
             Aggregates.Add( aggregate );
         }
 
+        /// <summary>
+        /// Unlinks the child column from this datagrid.
+        /// </summary>
+        /// <param name="column">Column to unlink from this datagrid.</param>
+        internal void Unhook( DataGridColumn<TItem> column )
+        {
+            Columns.Remove( column );
+        }
+
         protected override Task OnAfterRenderAsync( bool firstRender )
         {
             if ( firstRender )

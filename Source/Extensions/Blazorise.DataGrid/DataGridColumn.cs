@@ -64,6 +64,12 @@ namespace Blazorise.DataGrid
 
                 FilterContext = null;
             }
+
+            if ( ParentDataGrid != null )
+            {
+                // disconnect column to the parent datagrid
+                ParentDataGrid.Unhook( this );
+            }
         }
 
         private void InitializeFilterContext()
