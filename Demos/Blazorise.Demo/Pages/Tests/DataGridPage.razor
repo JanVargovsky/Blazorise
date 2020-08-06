@@ -14,6 +14,13 @@
                         <FieldLabel>
                         </FieldLabel>
                         <FieldBody>
+                            <Check @bind-Checked="@showIdColumn">Id column</Check>
+                        </FieldBody>
+                    </Field>
+                    <Field>
+                        <FieldLabel>
+                        </FieldLabel>
+                        <FieldBody>
                             <Check @bind-Checked="@editable">Editable</Check>
                         </FieldBody>
                     </Field>
@@ -109,7 +116,10 @@
                                 <Button Color="Color.Warning" Clicked="@context.Clicked">Clear Filter</Button>
                             </ClearFilterCommandTemplate>
                         </DataGridCommandColumn>
-                        <DataGridColumn TItem="Employee" Field="@nameof( Employee.Id )" Caption="#" Sortable="false" Width="60px" />
+                        @if (showIdColumn)
+                        {
+                            <DataGridColumn TItem="Employee" Field="@nameof( Employee.Id )" Caption="#" Sortable="false" Width="60px" />
+                        }
                         <DataGridColumn TItem="Employee" Field="@nameof( Employee.FirstName )" Caption="First Name" Editable="true">
                             <FilterTemplate>
                                 <TextEdit Placeholder="Search name" TextChanged="@(v=>context.TriggerFilterChange(v))" />
@@ -225,6 +235,7 @@
     bool sortable = true;
     bool filterable = true;
     bool showPager = true;
+    bool showIdColumn = true;
 
     // TODO: add options to control the commands
     //bool newCommandAllowed = true;
